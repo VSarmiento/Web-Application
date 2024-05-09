@@ -13,17 +13,20 @@
         <h1>iJournal</h1>
     </div>
     <div class="container">
+        <h2 id="header2">Login</h2>
+        <p id="header2">Welcome Back!</p>
+        <hr>
         <div id="credentials">
             <form class="form" id="login">
-                <label for="username">Username: </label>
-                <input type="text" name="username" id="username" required>
-                <br><br>
-                <label for="password">Password: </label>
-                <input type="text" name="password" id="password" required>
-                <br><br>
-                <input type="submit" value="Login">
-                <br><br>
-                <A href="createaccount.html">New Here? Create Your Account</A>
+                <label for="username"><b>Username: </b></label>
+                <input type="text" name="username" placeholder="Enter Username" required><br><br>
+                <br>
+                <label for="password"><b>Password: </b></label>
+                <input type="password" name="password" placeholder="Enter Password" required><br><br>
+                <br>
+                <button type="submit">Login</button><br><br>
+                <br>
+                <A id="createpage" href="createaccount.html">New Here? Create Your Account</A>
             </form>
         </div>
     </div>
