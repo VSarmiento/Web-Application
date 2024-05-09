@@ -16,16 +16,59 @@
         <textarea id="entry"></textarea>
         <button id="save">Save</button>
     </div>
+    <div class="centerButton">
+        <button type="button" id="backdash">Backward</button>
+        <button type="button" id="load">Load</button>
+        <button type="button" id="fordash">Forward</button>
+    </div>
     <script>
         const entry = document.getElementById('entry');
         const save = document.getElementById('save');
+        const load = document.getElementById('load');
+        const backdash = document.getElementById('backdash');
+        const fordash = document.getElementById('fordash');
         const ws = new WebSocket('ws://10.0.2.15:8080');
 
+        let entries = [];
+        let currentIndex = -1;
+
         save.addEventListener('click', () => {
-            ws.send(entry.value);
-            console.log('Save button clicked');
-            entry.value = '';
+            if (typeof entry.value === 'string') {
+                ws.send(JSON.stringify({ action: 'Save', entry: entry.value }));
+                console.log('Save button clicked');
+                entry.value = '';
+            } else {
+                console.error('Error: entry.value is not a string');
+            }
         });
+
+        load.addEventListener('click', () => {
+            ws.send(JSON.stringify({ action: 'Load' }));
+            console.log('Load button clicked');
+        });
+
+        backdash.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                entry.value = entries[currentIndex];
+            }
+        });
+
+        fordash.addEventListener('click', () => {
+            if (currentIndex < entries.length - 1) {
+                currentIndex++;
+                entry.value = entries[currentIndex];
+            }
+        });
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.action === 'Load') {
+                entries = data.entries;
+                currentIndex = entries.length - 1;
+                entry.value = entries[currentIndex];
+            }
+        };
     </script>
 </body>
 
