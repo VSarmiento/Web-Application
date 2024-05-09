@@ -1,10 +1,20 @@
+html {
+  background-color: #caf4f4;
+}
+
 #header {
+  font-size: 25px;
   text-align: center;
+  font-family: cursive;
 }
 
 #credentials {
-  flex-direction: column;
   text-align: center;
+  display: flex;
+  width: 100%;
+  padding: 60px 100px;
+  display: inline-block;
+  box-sizing: border-box;
 }
 
 #journal {
@@ -27,6 +37,24 @@
 }
 
 .container {
-  align-items: center;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+#header2 {
   text-align: center;
 }
